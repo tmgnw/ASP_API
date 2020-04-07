@@ -43,6 +43,7 @@ namespace Client.Controllers
             //return Json(new { data = models }, JsonRequestBehavior.AllowGet);
             return new JsonResult { Data = models, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
+
         public JsonResult InsertOrUpdate(Department department)
         {
             var myContent = JsonConvert.SerializeObject(department);
@@ -51,14 +52,20 @@ namespace Client.Controllers
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             if (department.Id == 0)
             {
-                var result = client.PostAsync("Departments", byteContent).Result;
+                var result = client.PostAsync("Department", byteContent).Result;
                 return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
             else
             {
-                var result = client.PutAsync("Departments/" + department.Id, byteContent).Result;
+                var result = client.PutAsync("Department/" + department.Id, byteContent).Result;
                 return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
+        }
+
+        public JsonResult Delete(int Id)
+        {
+            var result = client.DeleteAsync("Department/" + Id).Result;
+            return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
     }
 }

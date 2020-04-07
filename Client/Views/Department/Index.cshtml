@@ -3,11 +3,45 @@
     Layout = "~/Views/Layouts/Layout.cshtml";
 }
 
-<h2>Index</h2>
+@*<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
+</p>*@
+
+<p>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="ClearScreen();">Create New</button>
 </p>
+
+<div class="container">
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form>
+                            <div class="form-group" hidden>
+                                <label for="Id">Id:</label>
+                                <input type="text" class="form-control" id="Id" name="Id">
+                            </div>
+                            <div class="form-group">
+                                <label for="DepartmentName">Department Name:</label>
+                                <input type="text" class="form-control" id="Name" placeholder="Enter Department Name" name="DepartmentName">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" id="Save" onclick="Save();">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="table-responsive m-t-40">
     <table id="Department" class="table table-bordered table-striped">
