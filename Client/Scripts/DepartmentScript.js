@@ -50,7 +50,7 @@ function Save() {
         if (result.StatusCode == 200) {
             Swal.fire({
                 position: 'center',
-                type: 'success',
+                icon: 'success',
                 title: 'Department Added Successfully'
             }).then((result) => {
                 if (result.value) {
@@ -72,57 +72,61 @@ function ClearScreen() {
     $('#Save').show();
 }
 
-//function GetById(Id) {
-//    $.ajax({
-//        url: "/Department/GetById/" + Id,
-//        type: "GET",
-//        contentType: "application/json;charset=utf-8",
-//        dataType: "json",
-//        async: false,
-//        success: function (result) {
-//            const obj = JSON.parse(result);
-//            $('#Id').val('obj.Id');
-//            $('#Name').val('obj.Name');
-//            $('#myModal').modal('show');
-//            $('#Update').show();
-//            $('#Save').hide();
-//        },
-//        error: function (errormessage) {
-//            alert(errormessage.responseText)
-//        }
-//    });
-//}
+function GetById(Id) {
+    $.ajax({
+        url: "/Department/GetById/" + Id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        async: false,
+        success: function (result) {
+            const obj = JSON.parse(result);
+            $('#Id').val('obj.Id');
+            $('#Name').val('obj.Name');
+            $('#myModal').modal('show');
+            $('#Update').show();
+            $('#Save').hide();
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText)
+        }
+    });
+}
 
 function Delete(Id) {
     Swal.fire({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You won't be able to revert this!",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: "Yes, delete it!"
     }).then((result) => {
-        debugger;
-        $.ajax({
-            url: "/Department/Delete/",
-            data: { Id: Id }
-        }).then((result) => {
-            if (result.value) {
+        if (result.value) {
+            debugger;
+            $.ajax({
+                url: "/Department/Delete/",
+                data: { Id: Id }
+            }).then((result) => {
                 debugger;
                 if (result.StatusCode == 200) {
                     Swal.fire({
+                        icon: 'success',
                         position: 'center',
-                        type: 'success',
                         title: 'Delete Successfully',
-                        timer: 1000
+                        timer: 2000
+                    }).then(function () {
+                        location.reload();
+                        ClearScreen();
                     });
-                    window.location.href = "/Department";
                 }
                 else {
-                    Swal.fire('Error', 'Failed to Delete', 'error');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'error',
+                        text: 'Failed to Delete',
+                    })
                     ClearScreen();
                 }
-            }
-        })
+            })
+        }
     });
 }

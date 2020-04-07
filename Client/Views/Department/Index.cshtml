@@ -13,6 +13,20 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="ClearScreen();">Create New</button>
 </p>
 
+<div class="table-responsive m-t-40">
+    <table id="Department" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>CreateDate</th>
+                <th>UpdateDate</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class="deptbody" />
+    </table>
+</div>
+
 <div class="container">
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -36,24 +50,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-dismiss="modal" id="Save" onclick="Save();">Save</button>
+                    @*<button type="button" class="btn btn-warning" data-dismiss="modal" id="Update" onclick="GetById();">Update</button>*@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="table-responsive m-t-40">
-    <table id="Department" class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>CreateDate</th>
-                <th>UpdateDate</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody class="deptbody" />
-    </table>
 </div>
 
