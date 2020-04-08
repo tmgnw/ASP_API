@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -66,6 +67,22 @@ namespace Client.Controllers
         {
             var result = client.DeleteAsync("Department/" + Id).Result;
             return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        public async Task<JsonResult> GetById(int Id)
+        {
+            HttpResponseMessage response = await client.GetAsync("Department");
+            if (response.IsSuccessStatusCode)
+            {
+                var data = await response.Content.ReadAsAsync<IList<Department>>();
+                var dept = data.FirstOrDefault(x => x.Id == Id);
+                var result = JsonConvert.SerializeObject(dept, Formatting.None, new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                });
+                return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            return Json("Internal Server Error");
         }
     }
 }

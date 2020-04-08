@@ -1,4 +1,8 @@
-﻿$(document).ready(function () {
+﻿//document.getElementById("Update").addEventListener("click", function () {
+//    ClearScreen();
+//});
+
+$(document).ready(function () {
     $('#Department').dataTable({
         "ajax": loadDepartment(),
         "responsive": true,
@@ -19,12 +23,13 @@ function loadDepartment() {
                 html += '<tr>';
                 html += '<td>' + Dept.Name + '</td>';
                 html += '<td>' + moment(Dept.CreateDate).format('DD-MM-YYYY') + '</td>';
-                if (Department.UpdateDate == null) {
-                    html += '<td> Not Updated yet </td>';
-                }
-                else {
-                    html += '<td>' + moment(Dept.UpdateDate).format('DD-MM-YYYY') + '</td>';
-                }
+                html += '<td>' + moment(Dept.UpdateDate).format('DD-MM-YYYY') + '</td>';
+                //if (Department.UpdateDate == null) {
+                //    html += '<td> Not Updated yet </td>';
+                //}
+                //else {
+                //    html += '<td>' + moment(Dept.UpdateDate).format('DD-MM-YYYY') + '</td>';
+                //}
                 html += '<td><button type="button" class="btn btn-warning" id="Update" onclick="return GetById(' + Dept.Id + ')">Edit </button>';
                 html += '<button type="button" class="btn btn-danger" id="Delete" onclick="return Delete(' + Dept.Id + ')">Delete </button></td>';
                 html += '</tr>';
@@ -73,6 +78,7 @@ function ClearScreen() {
 }
 
 function GetById(Id) {
+    debugger;
     $.ajax({
         url: "/Department/GetById/" + Id,
         type: "GET",
@@ -81,14 +87,42 @@ function GetById(Id) {
         async: false,
         success: function (result) {
             const obj = JSON.parse(result);
-            $('#Id').val('obj.Id');
-            $('#Name').val('obj.Name');
+            $('#Id').val(obj.Id);
+            $('#Name').val(obj.Name);
             $('#myModal').modal('show');
             $('#Update').show();
             $('#Save').hide();
         },
         error: function (errormessage) {
             alert(errormessage.responseText)
+        }
+    });
+}
+
+function Edit() {
+    var Department = new Object();
+    Department.Id = $('#Id').val();
+    Department.Name = $('#Name').val();
+    $.ajax({
+        type: "POST",
+        url: "/Department/InsertOrUpdate",
+        data: Department
+    }).then((result) => {
+        debugger;
+        if (result.StatusCode == 200) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Department Added Successfully',
+                timer: 2000
+            }).then(function () {
+                location.reload();
+                ClearScreen();
+            });
+        }
+        else {
+            Swal.fire('Error', 'Failed to Input', 'error');
+            ClearScreen();
         }
     });
 }

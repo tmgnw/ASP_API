@@ -21,6 +21,13 @@ namespace ProjectApi.Controllers
             return department.Get();
         }
 
+        [HttpGet]
+        [ResponseType(typeof(Department))]
+        public async Task<IEnumerable<Department>> Get(int Id)
+        {
+            return await department.Get(Id);
+        }
+
         public IHttpActionResult Post(Department departments)
         {
             var post = department.Create(departments);
@@ -29,13 +36,6 @@ namespace ProjectApi.Controllers
                 return Ok("Department Added Successfully");
             }
             return BadRequest("Failed to Add Department");
-        }
-
-        [HttpGet]
-        [ResponseType(typeof(Department))]
-        public async Task<IEnumerable<Department>> Get(int Id)
-        {
-            return await department.Get(Id);
         }
 
         public IHttpActionResult Put(int Id, Department departments)
@@ -57,5 +57,27 @@ namespace ProjectApi.Controllers
             }
             return BadRequest("Failed to Delete Department");
         }
+
+        static List<Department> departments = new List<Department>()
+        {
+            new Department() { Id = 1, Name = "Thom"},
+            new Department() { Id = 2, Name = "Tum"},
+            new Department() { Id = 3, Name = "Tom"}
+        };
+
+        //public HttpResponseMessage Get()
+        //{
+        //    return Request.CreateResponse(HttpStatusCode.OK, departments);
+        //}
+
+        //public HttpResponseMessage Get(int id)
+        //{
+        //    var department = departments.FirstOrDefault(d => d.Id == id);
+        //    if(department == null)
+        //    {
+        //        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Department not found");
+        //    }
+        //    return Request.CreateResponse(HttpStatusCode.OK, department);
+        //}
     }
 }
