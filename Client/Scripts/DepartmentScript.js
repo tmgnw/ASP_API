@@ -1,14 +1,20 @@
-﻿//document.getElementById("Update").addEventListener("click", function () {
+﻿$(document).ready(function () {
+    $('#Edit').hide();
+    loadDepartment();
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    //$('#Department').dataTable({
+    //    "ajax": loadDepartment(),
+    //    "responsive": true,
+    //});
+    //$('[data-toggle="tooltip"]').tooltip();
+});
+
+//document.getElementById("Add").addEventListener("Click", function () {
 //    ClearScreen();
 //});
-
-$(document).ready(function () {
-    $('#Department').dataTable({
-        "ajax": loadDepartment(),
-        "responsive": true,
-    });
-    $('[data-toggle="tooltip"]').tooltip();
-});
 
 function loadDepartment() {
     $.ajax({
@@ -16,31 +22,71 @@ function loadDepartment() {
         type: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
-        success: function (result) {
-            debugger;
-            var html = '';
-            $.each(result, function (key, Dept) {
-                html += '<tr>';
-                html += '<td>' + Dept.Name + '</td>';
-                html += '<td>' + moment(Dept.CreateDate).format('DD-MM-YYYY') + '</td>';
-                html += '<td>' + moment(Dept.UpdateDate).format('DD-MM-YYYY') + '</td>';
-                //if (Department.UpdateDate == null) {
-                //    html += '<td> Not Updated yet </td>';
-                //}
-                //else {
-                //    html += '<td>' + moment(Dept.UpdateDate).format('DD-MM-YYYY') + '</td>';
-                //}
-                html += '<td><button type="button" class="btn btn-warning" id="Update" onclick="return GetById(' + Dept.Id + ')">Edit </button>';
-                html += '<button type="button" class="btn btn-danger" id="Delete" onclick="return Delete(' + Dept.Id + ')">Delete </button></td>';
-                html += '</tr>';
-            });
-            $('.deptbody').html(html);
-        },
-        error: function (errormessage) {
-            alert(errormessage.responseText)
-        }
+    }).done(function (data) {
+        $('#Department').dataTable({
+            "data": data,
+            "columns": [
+                //{ "data": "Id" },
+                { "data": "Name" },
+                {
+                    "data": "CreateDate", "render": function (data) {
+                        return moment(data).format('DD/MM/YYYY');
+                    }
+                },
+                {
+                    "data": "UpdateDate", "render": function (data) {
+                        var text = "Not Update Yet";
+                        var nulldate = "";
+                        if (data == nulldate) {
+                            return text();
+                        } else {
+                            return moment(data).format('DD/MM/YYYY');
+                        }
+                    }
+                },
+                {
+                    data: null, orderable: false, render: function (data, type, row) {
+                        return '<button type="button" class="btn btn-warning" id="Update" data-toggle="tooltip" data-placement="top" title="Update" onclick="return GetById(' + row.Id + ')"><i class="mdi mdi-pencil"></i></button> &nbsp; <button type="button" class="btn btn-danger" id="Delete" data-toggle="tooltip" data-placement="top" title="Delete" onclick="return Delete(' + row.Id + ')"><i class="mdi mdi-delete"></i></button>';
+                    }
+                }
+            ]
+        })
+        /*.fnReloadAjax();*/
+        /*.ajax.reload();*/
     });
 }
+
+//function loadDepartment() {
+//    $.ajax({
+//        url: "/Department/LoadDepartment",
+//        type: "GET",
+//        contentType: "application/json;charset=utf-8",
+//        dataType: "json",
+//        success: function (result) {
+//            debugger;
+//            var html = '';
+//            $.each(result, function (key, Dept) {
+//                html += '<tr>';
+//                html += '<td>' + Dept.Name + '</td>';
+//                html += '<td>' + moment(Dept.CreateDate).format('DD-MM-YYYY') + '</td>';
+//                html += '<td>' + moment(Dept.UpdateDate).format('DD-MM-YYYY') + '</td>';
+//                //if (Department.UpdateDate == null) {
+//                //    html += '<td> Not Updated yet </td>';
+//                //}
+//                //else {
+//                //    html += '<td>' + moment(Dept.UpdateDate).format('DD-MM-YYYY') + '</td>';
+//                //}
+//                html += '<td><button type="button" class="btn btn-warning" id="Update" onclick="return GetById(' + Dept.Id + ')">Edit </button>';
+//                html += '<button type="button" class="btn btn-danger" id="Delete" onclick="return Delete(' + Dept.Id + ')">Delete </button></td>';
+//                html += '</tr>';
+//            });
+//            $('.deptbody').html(html);
+//        },
+//        error: function (errormessage) {
+//            alert(errormessage.responseText)+
+//        }
+//    });
+//}
 
 function Save() {
     debugger;
@@ -59,6 +105,7 @@ function Save() {
                 title: 'Department Added Successfully'
             }).then((result) => {
                 if (result.value) {
+                    //table.ajax.reload()
                     location.reload()
                 }
             });
@@ -118,11 +165,13 @@ function Edit() {
             }).then(function () {
                 location.reload();
                 ClearScreen();
+                //table.ajax.reload();
             });
         }
         else {
             Swal.fire('Error', 'Failed to Input', 'error');
             ClearScreen();
+            //table.ajax.reload();
         }
     });
 }
@@ -148,6 +197,7 @@ function Delete(Id) {
                         title: 'Delete Successfully',
                         timer: 2000
                     }).then(function () {
+                        //table.ajax.reload();
                         location.reload();
                         ClearScreen();
                     });
@@ -158,6 +208,7 @@ function Delete(Id) {
                         title: 'error',
                         text: 'Failed to Delete',
                     })
+                    //table.ajax.reload();
                     ClearScreen();
                 }
             })

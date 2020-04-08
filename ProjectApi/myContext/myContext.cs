@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace ProjectApi.myContext
+namespace ProjectApi.MyContext
 {
     public class myContext : DbContext
     {

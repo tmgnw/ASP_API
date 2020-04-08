@@ -176,7 +176,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Department.cs" />
-    <Compile Include="myContext\myContext.cs" />
+    <Compile Include="MyContext\myContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DepartmentRepository.cs" />
     <Compile Include="Repository\Interface\IDepartmentRepository.cs" />
