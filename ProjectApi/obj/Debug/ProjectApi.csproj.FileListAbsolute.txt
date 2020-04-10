@@ -84,10 +84,10 @@ C:\Users\Thomas\source\repos\ProjectApi\ProjectApi\bin\System.Web.WebPages.Deplo
 C:\Users\Thomas\source\repos\ProjectApi\ProjectApi\bin\System.Web.WebPages.Razor.xml
 C:\Users\Thomas\source\repos\ProjectApi\ProjectApi\bin\Antlr3.Runtime.pdb
 C:\Users\Thomas\source\repos\ProjectApi\ProjectApi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Thomas\source\repos\ProjectApi\ProjectApi\obj\Debug\ProjectApi.Migrations.adddeepartment.resources
+C:\Users\Thomas\source\repos\ProjectApi\ProjectApi\obj\Debug\ProjectApi.csprojAssemblyReference.cache
+C:\Users\Thomas\source\repos\ProjectApi\ProjectApi\obj\Debug\ProjectApi.Migrations.add_allTable.resources
 C:\Users\Thomas\source\repos\ProjectApi\ProjectApi\obj\Debug\ProjectApi.csproj.GenerateResource.cache
 C:\Users\Thomas\source\repos\ProjectApi\ProjectApi\obj\Debug\ProjectApi.csproj.CoreCompileInputs.cache
 C:\Users\Thomas\source\repos\ProjectApi\ProjectApi\obj\Debug\ProjectApi.csproj.CopyComplete
 C:\Users\Thomas\source\repos\ProjectApi\ProjectApi\obj\Debug\ProjectApi.dll
 C:\Users\Thomas\source\repos\ProjectApi\ProjectApi\obj\Debug\ProjectApi.pdb
-C:\Users\Thomas\source\repos\ProjectApi\ProjectApi\obj\Debug\ProjectApi.csprojAssemblyReference.cache

@@ -3,35 +3,16 @@
     Layout = "~/Views/Layouts/Layout.cshtml";
 }
 
-@*<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
-
-<p>
-    <button id="Add" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Create New</button>
+    <button id="Add" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Create Department</button>
 </p>
-
-<div class="table-responsive m-t-40">
-    <table id="Department" class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>CreateDate</th>
-                <th>UpdateDate</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody class="deptbody" />
-    </table>
-</div>
 
 <div class="container">
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
+                    <h4 class="modal-title">Add Department</h4> 
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -58,3 +39,20 @@
     </div>
 </div>
 
+<div class="table-responsive m-t-40">
+    <table id="Department" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Create Date</th>
+                <th>Update Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        @*<tbody class="deptbody" />*@
+    </table>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/DepartmentScript.js"></script>
+}

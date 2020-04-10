@@ -19,33 +19,42 @@ namespace ProjectApi.Controllers
         DepartmentRepository department = new DepartmentRepository();
 
         //code old
-        [HttpGet]
-        public IEnumerable<Department> Get()
-        {
-            return department.Get();
-        }
-
-        //public IHttpActionResult Get()
+        //[HttpGet]
+        //public IEnumerable<Department> Get()
         //{
-        //    return Ok(department);
+        //    return department.Get();
         //}
+
+        public IHttpActionResult Get()
+        {
+            if (department.Get() == null)
+            {
+                return Content(HttpStatusCode.NotFound, "Data Department is Empty!");
+            }
+            return Ok(department.Get());
+        }
 
         [HttpGet]
         [ResponseType(typeof(Department))]
         public async Task<IEnumerable<Department>> Get(int Id)
         {
+            //return await department.Get(Id);
+            if (await department.Get(Id) == null)
+            {
+                return null;
+            }
             return await department.Get(Id);
         }
         
         public IHttpActionResult Post(Department departments)
         {
-            if (departments.Name == "")
+            if ((departments.Name != null) && (departments.Name != ""))
             {
-                return Content(HttpStatusCode.NotFound, "Failed to Add Department");
+                department.Create(departments);
+                return Ok("Department Added Successfully!"); //Status 200 OK
             }
-            department.Create(departments);
-            return Ok("Department Added Successfully");
-                
+            return BadRequest("Failed to Add Department");
+
             //if (departments.Name == "")
             //{
             //    return Content(HttpStatusCode.NotFound, "Failed to Add Department");
@@ -64,21 +73,29 @@ namespace ProjectApi.Controllers
 
         public IHttpActionResult Put(int Id, Department departments)
         {
-            var dept_id = conn.department.FirstOrDefault(x => x.Id == Id);
-
-            if (dept_id == null)
-            {
-                return Content(System.Net.HttpStatusCode.NotFound, "Id not found");
-            }
-            else if (departments.Name == "")
-            {
-                return Content(System.Net.HttpStatusCode.NotFound, "Name cannot empty");
-            }
-            else
+            if ((departments.Name != null) && (departments.Name != ""))
             {
                 department.Update(Id, departments);
-                return Ok("Update successfully");
+                return Ok("Department Updated Successfully!"); //Status 200 OK
             }
+            return BadRequest("Failed to Update Department");
+
+            //var dept_id = conn.department.FirstOrDefault(x => x.Id == Id);
+
+            //if (dept_id == null)
+            //{
+            //    return Content(System.Net.HttpStatusCode.NotFound, "Id not found");
+            //}
+            //else if (departments.Name == "")
+            //{
+            //    return Content(System.Net.HttpStatusCode.NotFound, "Name cannot empty");
+            //}
+            //else
+            //{
+            //    department.Update(Id, departments);
+            //    return Ok("Update successfully");
+            //}
+
             //if (departments.Name == null && departments.Name == "")
             //{
             //    return Ok("Failed to Update Department");

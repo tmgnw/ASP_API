@@ -56,7 +56,7 @@ namespace ProjectApi.Repository
         {
             //throw new NotImplementedException();
             var spName = "SP_UpdateDepartment";
-            parameters.Add("@newid", Id);
+            parameters.Add("@newId", Id);
             parameters.Add("@Name", department.Name);
             var update = connection.Execute(spName, parameters, commandType: CommandType.StoredProcedure);
             return update;

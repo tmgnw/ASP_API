@@ -9,7 +9,8 @@ namespace ProjectApi.MyContext
 {
     public class myContext : DbContext
     {
-        public myContext() : base("BelajarAPI") { }
+        public myContext() : base("DB_API") { }
         public DbSet<Department> department { get; set; }
+        public DbSet<Devisi> devisi { get; set; }
     }
 }

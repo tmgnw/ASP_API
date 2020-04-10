@@ -7,7 +7,7 @@ using System.Web;
 
 namespace ProjectApi.Models
 {
-    [Table("Department")]
+    [Table("TB_M_Department")]
     public class Department
     {
         [Key]
@@ -18,25 +18,25 @@ namespace ProjectApi.Models
         public Nullable<DateTimeOffset> UpdateDate { get; set; }
         public Nullable<DateTimeOffset> DeleteDate { get; set; }
 
-        public Department() { }
+        //public Department() { }
 
-        public Department(Department department) //create
-        {
-            this.Name = department.Name;
-            this.CreateDate = DateTimeOffset.Now;
-            this.IsDelete = false;
-        }
+        //public Department(Department department) //create
+        //{
+        //    this.Name = department.Name;
+        //    this.CreateDate = DateTimeOffset.Now;
+        //    this.IsDelete = false;
+        //}
 
-        public void Update(Department department)
-        {
-            this.Name = department.Name;
-            this.UpdateDate = DateTimeOffset.Now;
-        }
+        //public void Update(Department department)
+        //{
+        //    this.Name = department.Name;
+        //    this.UpdateDate = DateTimeOffset.Now;
+        //}
 
-        public void Delete()
-        {
-            this.IsDelete = true;
-            this.DeleteDate = DateTimeOffset.Now;
-        }
+        //public void Delete()
+        //{
+        //    this.IsDelete = true;
+        //    this.DeleteDate = DateTimeOffset.Now;
+        //}
     }
 }

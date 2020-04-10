@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layouts/Layout.cshtml";
+}
+<p>
+    <button id="Add2" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalDiv">Create Devisi</button>
+</p>
+
+<div class="container">
+    <div class="modal fade" id="myModalDiv" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Devisi</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form>
+                            <div class="form-group" hidden>
+                                <label for="Id">Id:</label>
+                                <input type="text" class="form-control" id="Id" name="Id">
+                            </div>
+                            <div class="form-group">
+                                <label for="Name">Devisi Name :</label>
+                                <input type="text" class="form-control" id="Name" placeholder="Enter Department Name" name="DepartmentName">
+                            </div>
+                            <div class="form-group">
+                                <label for="DepartmentName">Department Name :</label>
+                                <div class="form-group">
+                                    <select class="form-control" id="DepartmentOption" name="DepartmentId"></select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" id="Save" onclick="Save();">Save</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal" id="Update" onclick="Edit();">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive m-t-40">
+    <table id="Devisi" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Department Name</th>
+                <th>Create Date</th>
+                <th>Update Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        @*<tbody class="deptbody" />*@
+    </table>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/DevisiScript.js"></script>
+}
