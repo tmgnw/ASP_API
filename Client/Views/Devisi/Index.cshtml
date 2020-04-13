@@ -3,9 +3,12 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Layouts/Layout.cshtml";
 }
-<p>
-    <button id="Add2" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalDiv">Create Devisi</button>
-</p>
+    <p>
+        <button id="Add2" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalDiv">Create Devisi</button>
+        <a href="@Url.Action("Excel","Devisi")" class="btn btn-primary"><span>Excel</span></a>
+        <a href="@Url.Action("Csv","Devisi")" class="btn btn-primary"><span>Csv</span></a>
+        <a href="@Url.Action("Pdf","Devisi")" class="btn btn-primary"><span>Pdf</span></a>
+    </p>
 
 <div class="container">
     <div class="modal fade" id="myModalDiv" role="dialog">

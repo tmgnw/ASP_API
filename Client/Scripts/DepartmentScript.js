@@ -10,6 +10,10 @@
             { "orderable": false, "targets": 3 },
             { "searchable": false, "targets": 3 }
         ],
+        //dom: 'Bfrtip',
+        //buttons: [
+        //    'csv', 'excel', 'pdf'
+        //],
         "columns": [
             { "data": "Name" },
             {
@@ -35,7 +39,7 @@
             },
         ]
     });
-}); 
+});
 //------------------------------------------------------------//
 document.getElementById("Add").addEventListener("click", function () {
     $('#Id').val('');
@@ -186,3 +190,9 @@ function Delete(Id) {
         }
     });
 }
+
+//function erere() {
+//    $.ajax({
+//        url: "/Department/Excel"
+//    })
+//}

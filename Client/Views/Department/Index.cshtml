@@ -3,16 +3,20 @@
     Layout = "~/Views/Layouts/Layout.cshtml";
 }
 
-<p>
-    <button id="Add" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Create Department</button>
-</p>
+    <p>
+        <button id="Add" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Create Department</button>
+        @*<button id="" type="button" class="btn btn-primary" onclick="erere()">Excel</button>*@
+        <a href="@Url.Action("Excel","Department")" class="btn btn-primary"><span>Excel</span></a>
+        <a href="@Url.Action("Csv","Department")" class="btn btn-primary"><span>Csv</span></a>
+        <a href="@Url.Action("Pdf","Department")" class="btn btn-primary"><span>Pdf</span></a>
+    </p>
 
 <div class="container">
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Add Department</h4> 
+                    <h4 class="modal-title">Add Department</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">

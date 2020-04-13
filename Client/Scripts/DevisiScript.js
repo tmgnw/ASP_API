@@ -12,6 +12,10 @@ $(document).ready(function () {
             { "orderable": false, "targets": 4 },
             { "searchable": false, "targets": 4 }
         ],
+        //dom: 'Bfrtip',
+        //buttons: [
+        //    'csv', 'excel', 'pdf'
+        //],
         "columns": [
             { "data": "Name" },
             { "data": "DepartmentName" },
